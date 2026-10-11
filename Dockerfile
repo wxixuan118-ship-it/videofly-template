@@ -18,7 +18,7 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL \
 # Env vars are validated at runtime, not at build time; the build container has a 1.5GB memory cap
 ENV SKIP_ENV_VALIDATION=1 \
     NEXT_TELEMETRY_DISABLED=1 \
-    NODE_OPTIONS=--max-old-space-size=1280
+    NODE_OPTIONS=--max-old-space-size=1100
 RUN pnpm build
 
 FROM node:20-alpine AS runner

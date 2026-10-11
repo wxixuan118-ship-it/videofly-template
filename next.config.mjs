@@ -24,6 +24,17 @@ const config = {
   /** We already do linting and typechecking as separate tasks in CI */
   typescript: { ignoreBuildErrors: true },
   output: "standalone",
+  experimental: {
+    // Keep `next build` within small CI/Docker memory limits
+    webpackMemoryOptimizations: true,
+    cpus: 1,
+    webpackBuildWorker: false,
+  },
+  webpack: (config, { dev }) => {
+    if (!dev) config.cache = false;
+    return config;
+  },
+  productionBrowserSourceMaps: false,
 };
 
 // Compose plugins
